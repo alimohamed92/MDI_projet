@@ -49,7 +49,7 @@ public class GameClock extends JPanel implements Runnable
         super();
         this.clock1 = new Clock();//white player clock
         this.clock2 = new Clock();//black player clock
-        this.runningClock = this.clock1;//running/active clock
+        this.runningClock = null;//running/active clock
         this.game = game;
         this.settings = game.getSettings();
         this.background = new BufferedImage(600, 600, BufferedImage.TYPE_INT_ARGB);

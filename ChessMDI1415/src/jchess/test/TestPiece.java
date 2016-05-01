@@ -143,6 +143,7 @@ public class TestPiece {
         Piece b1 = board.getSquare(2, 7).getPiece();
         assertTrue(b1 instanceof Bishop);
         assertEquals(Colors.WHITE, b1.getPlayer().getColor());
+        System.out.println(" nb : "+b1.getAllMoves().size());
 
         assertEquals(5, b1.getAllMoves().size());
 
