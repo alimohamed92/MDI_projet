@@ -34,6 +34,7 @@ import java.applet.*;
 import java.io.IOException;
 import jchess.utils.GUI;
 import jchess.utils.Settings;
+import jchess.display.windows.DrawLocalSettings;
 import jchess.display.windows.JChessAboutBox;
 import jchess.display.windows.PawnPromotionWindow;
 import jchess.display.windows.ThemeChooseWindow;
@@ -183,6 +184,10 @@ public class JChessView extends FrameView implements ActionListener, ComponentLi
         idleIcon = resourceMap.getIcon("StatusBar.idleIcon");
         statusAnimationLabel.setIcon(idleIcon);
         progressBar.setVisible(false);
+        
+        //On demarre le choix d'un nouveau jeu à la premiere fenetre
+        this.setNewGameFrame(new NewGameWindow());
+        JChessApp.getApplication().show(this.getNewGameFrame());
 
         // connecting action tasks to status bar via TaskMonitor
         TaskMonitor taskMonitor = new TaskMonitor(getApplication().getContext());

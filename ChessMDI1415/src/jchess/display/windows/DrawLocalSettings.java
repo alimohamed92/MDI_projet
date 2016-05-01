@@ -22,6 +22,8 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.TextListener;
+import java.nio.ByteBuffer;
+import java.util.UUID;
 import java.awt.event.TextEvent;
 import java.awt.*;
 import javax.swing.text.BadLocationException;
@@ -220,6 +222,15 @@ public class DrawLocalSettings extends JPanel implements ActionListener, TextLis
         this.oponentComp.addActionListener(this);
         this.oponentHuman.addActionListener(this);
         this.okButton.addActionListener(this);
+    	String nameWhite=UUID.randomUUID().toString();
+    	long l = ByteBuffer.wrap(nameWhite.getBytes()).getLong();
+    	nameWhite=Long.toString(l, Character.MAX_RADIX);
+    	
+    	String nameBlack=UUID.randomUUID().toString();
+    	long lb = ByteBuffer.wrap(nameBlack.getBytes()).getLong();
+    	nameBlack=Long.toString(lb, Character.MAX_RADIX);
+        this.firstName.setText(nameWhite+"_White");
+        this.secondName.setText(nameBlack+"_Black");
 
         this.secondName.addActionListener(this);
 

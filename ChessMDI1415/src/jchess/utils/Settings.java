@@ -25,6 +25,8 @@ import java.io.Serializable;
 import java.util.Locale;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
+import java.util.UUID;
+
 import org.apache.log4j.Logger;
 import jchess.JChessApp;
 import jchess.core.Colors;
@@ -194,6 +196,8 @@ public class Settings implements Serializable
     public Settings()
     {
         //temporally
+    	//String nameWhite=UUID.randomUUID().toString()+"_White";
+    	//String nameBlack=UUID.randomUUID().toString()+"_Black";
         this.playerWhite = new Player("", Colors.WHITE.getColorName());
         this.playerBlack = new Player("", Colors.BLACK.getColorName());
         this.timeLimitSet = false;
