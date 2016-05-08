@@ -35,13 +35,18 @@ public class Knight extends Piece
         this.symbol = "N";
         this.addBehavior(new KnightBehavior(this));
     }
-public void accept(VisiteurPiece v){
-	v.visite(this);
 
-    }
-@Override
-public void acceptVisiteurM2(VisiteurPiece v) {
-	v.visite(this);
-	
-}
+	@Override
+	public void acceptVisiteurM2(VisiteurM2 v) {
+		v.visite(this);
+		
+	}
+
+	@Override
+	public void acceptVisiteurM1(VisiteurM1 v) {
+		v.visite(this);
+		
+	}
+
+
 }

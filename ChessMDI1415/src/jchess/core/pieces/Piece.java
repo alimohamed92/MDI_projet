@@ -30,6 +30,8 @@ import jchess.core.Chessboard;
 import jchess.core.Colors;
 import jchess.core.Player;
 import jchess.core.Square;
+import jchess.core.pieces.implementation.VisiteurM1;
+import jchess.core.pieces.implementation.VisiteurM2;
 import jchess.core.pieces.implementation.VisiteurPiece;
 import jchess.core.pieces.traits.behaviors.Behavior;
 import org.apache.log4j.Logger;
@@ -66,7 +68,9 @@ public abstract class Piece
 
     }
     
-    public abstract void acceptVisiteurM2(VisiteurPiece v);
+    public abstract void acceptVisiteurM2(VisiteurM2 v);
+    public abstract void acceptVisiteurM1(VisiteurM1 v);
+
     
     /* Method to draw piece on chessboard
      * @graph : where to draw

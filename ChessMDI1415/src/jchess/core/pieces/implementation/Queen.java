@@ -51,13 +51,18 @@ public class Queen extends Piece
         this.addBehavior(new BishopBehavior(this));
     }
     
-public void accept(VisiteurPiece v){
-	v.visite(this);
 
-    }
+
 
 @Override
-public void acceptVisiteurM2(VisiteurPiece v) {
+public void acceptVisiteurM2(VisiteurM2 v) {
+	v.visite(this);
+	
+}
+
+
+@Override
+public void acceptVisiteurM1(VisiteurM1 v) {
 	v.visite(this);
 	
 }
