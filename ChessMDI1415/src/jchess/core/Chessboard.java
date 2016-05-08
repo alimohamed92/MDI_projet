@@ -251,14 +251,14 @@ public class Chessboard
      * @param xTo to which x move piece
      * @param yTo to which y move piece
      */
-    public void move(int xFrom, int yFrom, int xTo, int yTo)
+    public void move(Coup mont)
     {
         Square fromSQ = null;
         Square toSQ = null;
         try
         {
-            fromSQ = this.getSquares()[xFrom][yFrom];
-            toSQ = this.getSquares()[xTo][yTo];
+            fromSQ = this.getSquares()[mont.getxFrom()][mont.getyFrom()];
+            toSQ = this.getSquares()[mont.getxTo()][mont.getyTo()];
         }
         catch (java.lang.IndexOutOfBoundsException exc)
         {
