@@ -167,4 +167,8 @@ public class King extends Piece
     {
         this.wasMotioned = wasMotioned;
     }
+public void accept(VisiteurPiece v){
+	v.visite(this);
+
+    }
 }

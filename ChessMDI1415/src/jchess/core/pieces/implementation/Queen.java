@@ -51,4 +51,9 @@ public class Queen extends Piece
         this.addBehavior(new BishopBehavior(this));
     }
     
+public void accept(VisiteurPiece v){
+	v.visite(this);
+
+    }
+    
 }
