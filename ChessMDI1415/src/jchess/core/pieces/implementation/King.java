@@ -171,4 +171,9 @@ public void accept(VisiteurPiece v){
 	v.visite(this);
 
     }
+@Override
+public void acceptVisiteurM2(VisiteurPiece v) {
+	v.visite(this);
+	
+}
 }
