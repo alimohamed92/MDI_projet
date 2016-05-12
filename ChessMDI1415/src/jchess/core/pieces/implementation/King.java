@@ -168,8 +168,8 @@ public class King extends Piece
         this.wasMotioned = wasMotioned;
     }
 	@Override
-	public void acceptVisiteurM2(VisiteurM2 v) {
-		v.visite(this);
+	public int acceptVisiteurM2(VisiteurM2 v) {
+		return v.visite(this);
 		
 	}
 	@Override

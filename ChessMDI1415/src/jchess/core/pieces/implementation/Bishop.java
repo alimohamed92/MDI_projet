@@ -51,8 +51,8 @@ public class Bishop extends Piece
     }
 
 	@Override
-	public void acceptVisiteurM2(VisiteurM2 v) {
-		v.visite(this);
+	public int acceptVisiteurM2(VisiteurM2 v) {
+		return v.visite(this);
 		
 	}
 

@@ -134,6 +134,8 @@ public class Chessboard
         if (places.equals("")) //if newGame
         {
             this.setPieces4NewGame(plWhite, plBlack);
+            System.out.println(plWhite+" score : "+plWhite.score());
+            System.out.println(plBlack+" score : "+plBlack.score());
         } 
         else //if loadedGame
         {
@@ -174,25 +176,46 @@ public class Chessboard
         {
             player.goDown = true;
         }
-
-        this.getSquare(0, i).setPiece(new Rook(this, player));
-        this.getSquare(7, i).setPiece(new Rook(this, player));
-        this.getSquare(1, i).setPiece(new Knight(this, player));
-        this.getSquare(6, i).setPiece(new Knight(this, player));
-        this.getSquare(2, i).setPiece(new Bishop(this, player));
-        this.getSquare(5, i).setPiece(new Bishop(this, player));
+        Piece p =null;
+        p=new Rook(this, player);
+        this.getSquare(0, i).setPiece(p);
+        p.getPlayer().adddPiece(p);
         
-
-        this.getSquare(3, i).setPiece(new Queen(this, player));
+        p = new Rook(this, player);
+        this.getSquare(7, i).setPiece(p);
+        p.getPlayer().adddPiece(p);
+        
+        p = new Knight(this, player);
+        this.getSquare(1, i).setPiece(p);
+        p.getPlayer().adddPiece(p);
+        
+        p = new Knight(this, player);
+        this.getSquare(6, i).setPiece(p);
+        p.getPlayer().adddPiece(p);
+        
+        p = new Bishop(this, player);
+        this.getSquare(2, i).setPiece(p);
+        p.getPlayer().adddPiece(p);
+        
+        p = new Bishop(this, player);
+        this.getSquare(5, i).setPiece(p);
+        p.getPlayer().adddPiece(p);
+        
+        p = new Queen(this, player);
+        this.getSquare(3, i).setPiece(p);
+        player.adddPiece(p);
+        
         if (player.getColor() == Colors.WHITE)
         {
             kingWhite = new King(this, player);
             this.getSquare(4, i).setPiece(kingWhite);
+            player.adddPiece(kingWhite);
         }
         else
         {
             kingBlack = new King(this, player);
             this.getSquare(4, i).setPiece(kingBlack);
+            player.adddPiece(kingBlack);
         }
     }
 
@@ -209,7 +232,9 @@ public class Chessboard
         }
         for (int x = 0; x < 8; x++)
         {
-            this.getSquare(x, i).setPiece(new Pawn(this, player));
+            Piece p = new Pawn(this, player);
+			this.getSquare(x, i).setPiece(p );
+			player.adddPiece(p);
         }
     }
     
@@ -284,8 +309,10 @@ public class Chessboard
         Piece promotedPiece = null;
         boolean wasEnPassant = false;
         if (end.piece != null)
-        {
+        { //******************ajouter un traitement:perte de pièce ***************************
             end.getPiece().setSquare(null);
+            end.getPiece().getPlayer().removePiece(end.piece);
+            System.out.println(end.getPiece().getPlayer()+" score : "+end.getPiece().getPlayer().score());
         }
 
         Square tempBegin = new Square(begin);//4 moves history

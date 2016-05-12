@@ -68,7 +68,7 @@ public abstract class Piece
 
     }
     
-    public abstract void acceptVisiteurM2(VisiteurM2 v);
+    public abstract int acceptVisiteurM2(VisiteurM2 v);
     public abstract void acceptVisiteurM1(VisiteurM1 v);
 
     

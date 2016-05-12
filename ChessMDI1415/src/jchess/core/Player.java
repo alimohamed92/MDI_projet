@@ -21,6 +21,11 @@
 package jchess.core;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
+import jchess.core.pieces.Piece;
+import jchess.core.pieces.implementation.VisiteurM2;
 
 
 /**
@@ -32,6 +37,7 @@ public class Player implements Serializable
     protected String name;
 
     protected Colors color;
+    private List<Piece> pieces;
 
     public enum playerTypes
     {
@@ -45,7 +51,10 @@ public class Player implements Serializable
     /**
      * Empty constructor.
      */
-    public Player(){}
+    public Player(){
+    	
+    	this.pieces =new ArrayList<Piece>();
+    }
 
     /**
      * Constructor for Player class
@@ -57,7 +66,9 @@ public class Player implements Serializable
         this.name = name;
         this.color = Colors.valueOf(color.toUpperCase());
         this.goDown = false;
+        this.pieces =new ArrayList<Piece>();
     }
+    
 
     /** Method setting the players name
      *  @param name name of player
@@ -105,5 +116,25 @@ public class Player implements Serializable
     public boolean isGoDown()
     {
         return goDown;
-    }    
+    } 
+    
+    public void adddPiece(Piece p){
+    	this.pieces.add(p);
+    }
+    
+    public void removePiece(Piece p){
+    	this.pieces.remove(this.pieces.indexOf(p));
+    }
+    
+    public double score(){
+    	int res = 0;
+    	for(Piece p : this.pieces){
+    		res += p.acceptVisiteurM2(new VisiteurM2());
+    	}
+    	return res;
+    }
+    
+    public String toString(){
+    	return "["+this.getName()+", "+this.getColor()+", "+this.getPlayerType()+"]";
+    }
 }
