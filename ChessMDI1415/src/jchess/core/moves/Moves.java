@@ -251,13 +251,8 @@ public class Moves extends AbstractTableModel
             c=new CoupComm(c);
             p.addCoup(c);
             ((CoupComm) c).setComm();
-            //begin.piece.getPlayer().setName("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-          //  System.out.println("####"+begin.piece.getPlayer()+" time : " + begin.piece.getPlayer().getLastCoup().getDescription());
-            //ici on recupere le temps effectué pour joué le coup, ainsi que le commentaire
             //saisie lors de ce move
             commentaire=begin.piece.getPlayer().getLastCoup().getDescription();
-    		
-            
             Chessboard.timeCoup = new Time();
         }
         if (castlingMove != Castling.NONE)
