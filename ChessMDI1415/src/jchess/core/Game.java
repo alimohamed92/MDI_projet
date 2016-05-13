@@ -109,7 +109,7 @@ public class Game extends JPanel implements ComponentListener, MouseListener
         this.add(gameClock);
 
         JScrollPane Moves = this.moves.getScrollPane();
-        Moves.setSize(new Dimension(180, 350));
+        Moves.setSize(new Dimension(500, 500));
         Moves.setLocation(new Point(500, 121));
         this.add(Moves);
 
