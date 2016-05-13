@@ -24,6 +24,6 @@ public class CoupComm extends DecoratorCoup{
 	@Override
 	public String getDescription() {
 		// TODO Auto-generated method stub
-		return this.coup.getDescription()+"'"+ this.commentaire+"'";
+		return this.coup.getDescription()+"'*"+ this.commentaire+"*'";
 	}
 }
