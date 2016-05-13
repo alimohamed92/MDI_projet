@@ -84,7 +84,7 @@ public class Game extends JPanel implements ComponentListener, MouseListener
      */       
     protected Moves moves;
     
-
+   // private Time timeCoup;
     
     protected JTabbedPane tabPane;
    
@@ -305,6 +305,7 @@ public class Game extends JPanel implements ComponentListener, MouseListener
                 activeGame.repaint();
             }            
         }
+        //timeCoup = new Time();
         chessboard.repaint();
         this.repaint();
         //dirty hacks ends over here :)
@@ -319,11 +320,19 @@ public class Game extends JPanel implements ComponentListener, MouseListener
         LOG.debug(message);
         JOptionPane.showMessageDialog(null, message);
     }
+    
+  /*  public Time getTime(){
+    	return timeCoup;
+    }*/
 
     /** Method to swich active players after move
      */
     public void switchActive()
-    {
+    {	//Time t=this.timeCoup;
+       /* CoupTemp c = new CoupTemp(new Coup());
+    	c.setTime(this.timeCoup);
+		activePlayer.addCoup(c);
+		this.timeCoup = new Time();*/
         if (activePlayer == getSettings().getPlayerWhite())
         {
             activePlayer = getSettings().getPlayerBlack();
@@ -334,6 +343,7 @@ public class Game extends JPanel implements ComponentListener, MouseListener
         }
 
         this.getGameClock().switchClocks();
+       // System.out.println("****************** " +activePlayer+ "Temps du coup "+ ((CoupTemp) activePlayer.getLastCoup()).getTime());
     }
 
     /** Method of getting accualy active player
@@ -348,8 +358,9 @@ public class Game extends JPanel implements ComponentListener, MouseListener
      */
     public void nextMove()
     {
+    	
         switchActive();
-
+        
         LOG.debug("next move, active player: " + activePlayer.getName() + 
                   ", color: " + activePlayer.getColor().name() + 
                   ", type: " + activePlayer.getPlayerType().name()

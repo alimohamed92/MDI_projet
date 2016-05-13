@@ -38,6 +38,7 @@ public class Player implements Serializable
 
     protected Colors color;
     private List<Piece> pieces;
+    private List<Coup> coups;
 
     public enum playerTypes
     {
@@ -54,6 +55,7 @@ public class Player implements Serializable
     public Player(){
     	
     	this.pieces =new ArrayList<Piece>();
+    	this.coups = new ArrayList<Coup>();
     }
 
     /**
@@ -120,6 +122,13 @@ public class Player implements Serializable
     
     public void adddPiece(Piece p){
     	this.pieces.add(p);
+    }
+    
+    public void addCoup(Coup c){
+    	this.coups.add(0, c);
+    }
+    public Coup getLastCoup(){
+    	return this.coups.get(0);
     }
     
     public void removePiece(Piece p){

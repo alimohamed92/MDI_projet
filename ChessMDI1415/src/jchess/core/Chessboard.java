@@ -47,7 +47,8 @@ import org.apache.log4j.*;
 public class Chessboard 
 {
     private static final Logger LOG = Logger.getLogger(Chessboard.class);
-    
+    public static Time timeCoup = new Time();
+    private boolean estDemare;
     protected static final int TOP = 0;
     
     protected static final int BOTTOM = 7;
@@ -105,6 +106,7 @@ public class Chessboard
             }
         }//--endOf--create object for each square
         this.Moves = Moves;
+        this.estDemare = false;
 
     }/*--endOf-Chessboard--*/
 
@@ -136,6 +138,11 @@ public class Chessboard
             this.setPieces4NewGame(plWhite, plBlack);
             System.out.println(plWhite+" score : "+plWhite.score());
             System.out.println(plBlack+" score : "+plBlack.score());
+            if(!estDemare){
+            	GestionTime thread = new GestionTime();
+            	thread.start();
+            }
+            
         } 
         else //if loadedGame
         {
@@ -268,6 +275,7 @@ public class Chessboard
     public void move(Square begin, Square end)
     {
         move(begin, end, true);
+        //temps du coup terminé!!************************
     }
 
     /** Method to move piece over chessboard
@@ -290,7 +298,12 @@ public class Chessboard
             LOG.error("error moving piece: " + exc.getMessage());
             return;
         }
+        CoupTemp c = new CoupTemp(mont);
+        c.setTime(timeCoup);
+       // fromSQ.getPiece().getPlayer().addCoup(c);
         this.move(fromSQ, toSQ, true);
+        this.timeCoup = new Time();
+       System.out.println("****************************** "+fromSQ.getPiece());
     }
 
     public void move(Square begin, Square end, boolean refresh)

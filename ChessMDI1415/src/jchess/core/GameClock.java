@@ -223,13 +223,14 @@ public class GameClock extends JPanel implements Runnable
         while (true)
         {
             if (this.runningClock != null)
-            {
+            {	//this.game.getTime().incremente();
                 if (this.runningClock.decrement())
                 {
                     repaint();
                     try
                     {
                         thread.sleep(1000);
+                        
                     }
                     catch (InterruptedException e)
                     {
@@ -243,6 +244,15 @@ public class GameClock extends JPanel implements Runnable
                     this.timeOver();
                 }
             }
+           /* else{
+            	this.game.getTime().incremente();
+            	try {
+					thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+            }*/
         }
     }
 
