@@ -37,6 +37,7 @@ import java.util.Set;
 import javax.swing.JOptionPane;
 import jchess.core.Colors;
 import jchess.core.Coup;
+import jchess.core.CoupComm;
 import jchess.core.CoupTemp;
 import jchess.utils.Settings;
 import jchess.core.Square;
@@ -68,6 +69,7 @@ public class Moves extends AbstractTableModel
     private Game game;
     protected Stack<Move> moveBackStack = new Stack<Move>();
     protected Stack<Move> moveForwardStack = new Stack<Move>();
+    private String commentaire="";
 
     public Moves(Game game)
     { 
@@ -75,8 +77,8 @@ public class Moves extends AbstractTableModel
         this.tableModel = new MyDefaultTableModel();
         this.table = new JTable(this.tableModel);
         this.scrollPane = new JScrollPane(this.table);
-        this.scrollPane.setMaximumSize(new Dimension(100, 100));
-        this.table.setMinimumSize(new Dimension(100, 100));
+        this.scrollPane.setMaximumSize(new Dimension(500, 500));
+        this.table.setMinimumSize(new Dimension(500, 500));
         this.game = game;
 
         this.tableModel.addColumn(this.names[0]);
@@ -84,7 +86,10 @@ public class Moves extends AbstractTableModel
         this.addTableModelListener(null);
         this.tableModel.addTableModelListener(null);
         this.scrollPane.setAutoscrolls(true);
+  
+      
     }
+    
 
     public void draw()
     {
@@ -234,30 +239,40 @@ public class Moves extends AbstractTableModel
                 locMove += "+";//check
             }
         }
-        if (castlingMove != Castling.NONE)
-        {
-            this.addCastling(castlingMove.getSymbol());
-        }
-        else
-        {
-            this.move.add(locMove);
-            this.addMove2Table(locMove);
-        }
-        this.scrollPane.scrollRectToVisible(new Rectangle(0, this.scrollPane.getHeight() - 2, 1, 1));
-
+        
         if (registerInHistory)
         {
             Move moveToAdd = new Move(new Square(begin), new Square(end), begin.piece, end.piece, castlingMove, wasEnPassant, promotedPiece);
             this.moveBackStack.add(moveToAdd);
             Coup c = new Coup(begin.getPozX(), begin.getPozX(), end.getPozX(), end.getPozY());
-            CoupTemp c1 = new CoupTemp(c);
-            c1.setTime(Chessboard.timeCoup);
+            c = new CoupTemp(c);
+            ((CoupTemp) c).setTime(Chessboard.timeCoup);
             Player p = begin.piece.getPlayer();
-            p.addCoup(c1);
+            c=new CoupComm(c);
+            p.addCoup(c);
+            ((CoupComm) c).setComm();
             //begin.piece.getPlayer().setName("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            System.out.println("###############################"+begin.piece.getPlayer()+" time : " +((CoupTemp) begin.piece.getPlayer().getLastCoup()).getTime());
-           Chessboard.timeCoup = new Time();
+          //  System.out.println("####"+begin.piece.getPlayer()+" time : " + begin.piece.getPlayer().getLastCoup().getDescription());
+            //ici on recupere le temps effectué pour joué le coup, ainsi que le commentaire
+            //saisie lors de ce move
+            commentaire=begin.piece.getPlayer().getLastCoup().getDescription();
+    		
+            
+            Chessboard.timeCoup = new Time();
         }
+        if (castlingMove != Castling.NONE)
+        {
+            this.addCastling(castlingMove.getSymbol());
+        }
+        else
+        { 	
+        	locMove+=commentaire;
+            this.move.add(locMove);
+            this.addMove2Table(locMove);
+        }
+        this.scrollPane.scrollRectToVisible(new Rectangle(0, this.scrollPane.getHeight() - 2, 1, 1));
+
+      
     }
 
     public void clearMoveForwardStack()
@@ -634,6 +649,6 @@ class MyDefaultTableModel extends DefaultTableModel
     @Override
     public boolean isCellEditable(int a, int b)
     {
-        return false;
+        return true;
     }
 }

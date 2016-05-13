@@ -20,4 +20,10 @@ public class CoupComm extends DecoratorCoup{
 		return commentaire;
 		
 	}
+
+	@Override
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return this.coup.getDescription()+": "+ this.commentaire;
+	}
 }

@@ -49,6 +49,9 @@ public class Coup {
 	public void setyTo(int yTo) {
 		this.yTo = yTo;
 	}
+	public String getDescription(){
+		return "";
+	}
 	
 	/*public static void main(String[] args){
 		Chessboard  board =new Game().getChessboard();

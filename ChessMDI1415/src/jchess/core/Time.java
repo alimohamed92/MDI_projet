@@ -28,6 +28,11 @@ public class Time {
 		}
 	}
 	public String toString(){
-		return this.min+" mn : "+this.sec+" sec";
+		if(min<10){
+			return " 0"+this.min+":"+this.sec;
+		}
+		else {
+		return " "+this.min+":"+this.sec;
+		}
 	}
 }

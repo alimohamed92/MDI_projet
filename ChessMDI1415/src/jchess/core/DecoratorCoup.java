@@ -13,6 +13,7 @@ public abstract class DecoratorCoup extends Coup{
 		this.coup = coup;
 	}
 
-
+	public abstract String getDescription();
+	
 	
 }

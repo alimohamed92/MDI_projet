@@ -13,5 +13,9 @@ public class CoupTemp extends DecoratorCoup{
 	public Time getTime(){
 		return time;
 	}
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return this.coup.getDescription()+" Time:"+this.time;
+	}
 
 }
