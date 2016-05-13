@@ -298,12 +298,14 @@ public class Chessboard
             LOG.error("error moving piece: " + exc.getMessage());
             return;
         }
-        CoupTemp c = new CoupTemp(mont);
-        c.setTime(timeCoup);
+       // CoupTemp c = new CoupTemp(mont);
+        //c.setTime(timeCoup);
+        //Piece p =fromSQ.getPiece();
+        //if(p!=null && p.getPlayer()!=null)p.getPlayer().addCoup(c);
        // fromSQ.getPiece().getPlayer().addCoup(c);
         this.move(fromSQ, toSQ, true);
-        this.timeCoup = new Time();
-       System.out.println("****************************** "+fromSQ.getPiece());
+        //this.timeCoup = new Time();
+       //if(p!=null && p.getPlayer()!=null)System.out.println("****************************** "+((CoupTemp) p.getPlayer().getLastCoup()).getTime());
     }
 
     public void move(Square begin, Square end, boolean refresh)

@@ -36,8 +36,12 @@ import java.util.EmptyStackException;
 import java.util.Set;
 import javax.swing.JOptionPane;
 import jchess.core.Colors;
+import jchess.core.Coup;
+import jchess.core.CoupTemp;
 import jchess.utils.Settings;
 import jchess.core.Square;
+import jchess.core.Time;
+
 import org.apache.log4j.Logger;
 
 /** Class representing the players moves, it's also checking
@@ -245,6 +249,14 @@ public class Moves extends AbstractTableModel
         {
             Move moveToAdd = new Move(new Square(begin), new Square(end), begin.piece, end.piece, castlingMove, wasEnPassant, promotedPiece);
             this.moveBackStack.add(moveToAdd);
+            Coup c = new Coup(begin.getPozX(), begin.getPozX(), end.getPozX(), end.getPozY());
+            CoupTemp c1 = new CoupTemp(c);
+            c1.setTime(Chessboard.timeCoup);
+            Player p = begin.piece.getPlayer();
+            p.addCoup(c1);
+            //begin.piece.getPlayer().setName("!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            System.out.println("###############################"+begin.piece.getPlayer()+" time : " +((CoupTemp) begin.piece.getPlayer().getLastCoup()).getTime());
+           Chessboard.timeCoup = new Time();
         }
     }
 

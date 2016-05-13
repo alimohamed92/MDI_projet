@@ -69,6 +69,7 @@ public class Player implements Serializable
         this.color = Colors.valueOf(color.toUpperCase());
         this.goDown = false;
         this.pieces =new ArrayList<Piece>();
+        this.coups = new ArrayList<Coup>();
     }
     
 
